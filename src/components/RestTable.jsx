@@ -48,7 +48,7 @@ export default function RestTable({ rests, onEdit, onDelete, onTogglePaid }) {
                                         onClick={() => onTogglePaid(rest)}
                                         className={rest.paid ? "text-yellow-600 hover:text-yellow-700" : "text-green-600 hover:text-green-700"}
                                     >
-                                        {rest.paid ? "বাকি করুন" : "পরিশোধ করুন"}
+                                        {rest.paid ? "বাকি" : "পরিশোধিত"}
                                     </Button>
                                     <Button
                                         variant="outline"
@@ -120,7 +120,7 @@ export default function RestTable({ rests, onEdit, onDelete, onTogglePaid }) {
                                 onClick={() => onTogglePaid(rest)}
                                 className={`flex-1 text-xs ${rest.paid ? "text-yellow-600 hover:text-yellow-700" : "text-green-600 hover:text-green-700"}`}
                             >
-                                {rest.paid ? "বাকি করুন" : "পরিশোধ করুন"}
+                                {rest.paid ? "বাকি" : "পরিশোধিত"}
                             </Button>
                             <Button
                                 variant="outline"
