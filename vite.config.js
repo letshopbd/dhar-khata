@@ -10,4 +10,15 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    chunkSizeWarningLimit: 1000, // Increase limit to 1000 kB
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'firebase': ['firebase/app', 'firebase/auth', 'firebase/firestore'],
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+        }
+      }
+    }
+  }
 })
