@@ -63,34 +63,48 @@ export default function AllRests() {
         try {
             const newPaidStatus = !rest.paid;
             await updateDoc(doc(db, "rests", rest.id), {
+                paid: newPaidStatus,
+            });
 
-                const handleEdit = (rest) => {
-                    setEditingRest(rest);
-                };
+            // Log activity
+            await addDoc(collection(db, "activities"), {
+                type: newPaidStatus ? 'paid' : 'unpaid',
+                description: newPaidStatus
+                    ? `পরিশোধ করেছে: ${rest.name} - ৳${rest.amount}`
+                    : `বাকি নিয়েছে: ${rest.name} - ৳${rest.amount}`,
+                timestamp: new Date(),
+            });
+        } catch (error) {
+            console.error("Error updating document: ", error);
+        }
+    };
 
-                const handleUpdateRest = async (data) => {
-                    if (!db) return;
-                    try {
-                        await updateDoc(doc(db, "rests", editingRest.id), data);
+    const handleEdit = (rest) => {
+        setEditingRest(rest);
+    };
 
-                        // Log activity
-                        await addDoc(collection(db, "activities"), {
-                            type: 'edit',
-                            description: `তথ্য পরিবর্তন করা হয়েছে: ${data.name} - ৳${data.amount}`,
-                            timestamp: new Date(),
-                        });
+    const handleUpdateRest = async (data) => {
+        if (!db) return;
+        try {
+            await updateDoc(doc(db, "rests", editingRest.id), data);
 
-                        setEditingRest(null);
-                    } catch (error) {
-                        console.error("Error updating document: ", error);
-                    }
-                };
+            // Log activity
+            await addDoc(collection(db, "activities"), {
+                type: 'edit',
+                description: `তথ্য পরিবর্তন করা হয়েছে: ${data.name} - ৳${data.amount}`,
+                timestamp: new Date(),
+            });
 
-                return(
-        <div className = "p-4 md:p-8 pb-20 md:pb-8" >
-                    {
-                        loading?(
-                <p> তথ্য লোড হচ্ছে...</p>
+            setEditingRest(null);
+        } catch (error) {
+            console.error("Error updating document: ", error);
+        }
+    };
+
+    return (
+        <div className="p-4 md:p-8 pb-20 md:pb-8">
+            {loading ? (
+                <p>তথ্য লোড হচ্ছে...</p>
             ) : (
                 <div className="space-y-8 md:space-y-12">
                     <div>
@@ -113,41 +127,40 @@ export default function AllRests() {
                         />
                     </div>
                 </div>
-            )
-        }
+            )}
 
-            {/* Edit Dialog */ }
-        <Dialog open={!!editingRest} onOpenChange={(open) => !open && setEditingRest(null)}>
-            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-                <DialogHeader>
-                    <DialogTitle>তথ্য পরিবর্তন করুন</DialogTitle>
-                </DialogHeader>
-                {editingRest && (
-                    <RestForm
-                        initialData={editingRest}
-                        onSubmit={handleUpdateRest}
-                        title=""
-                        className="border-0 shadow-none p-0"
-                    />
-                )}
-            </DialogContent>
-        </Dialog>
+            {/* Edit Dialog */}
+            <Dialog open={!!editingRest} onOpenChange={(open) => !open && setEditingRest(null)}>
+                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                        <DialogTitle>তথ্য পরিবর্তন করুন</DialogTitle>
+                    </DialogHeader>
+                    {editingRest && (
+                        <RestForm
+                            initialData={editingRest}
+                            onSubmit={handleUpdateRest}
+                            title=""
+                            className="border-0 shadow-none p-0"
+                        />
+                    )}
+                </DialogContent>
+            </Dialog>
 
-        {/* Delete Confirmation Dialog */ }
-        <Dialog open={!!deleteId} onOpenChange={(open) => !open && setDeleteId(null)}>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>মুছে ফেলার নিশ্চিতকরণ</DialogTitle>
-                </DialogHeader>
-                <div className="py-4">
-                    <p>আপনি কি নিশ্চিত যে আপনি এই তথ্যটি মুছে ফেলতে চান? এটি আর ফিরিয়ে আনা যাবে না।</p>
-                </div>
-                <div className="flex justify-end gap-4">
-                    <Button variant="outline" onClick={() => setDeleteId(null)}>বাতিল</Button>
-                    <Button variant="destructive" onClick={confirmDelete}>মুছুন</Button>
-                </div>
-            </DialogContent>
-        </Dialog>
-        </div >
+            {/* Delete Confirmation Dialog */}
+            <Dialog open={!!deleteId} onOpenChange={(open) => !open && setDeleteId(null)}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>মুছে ফেলার নিশ্চিতকরণ</DialogTitle>
+                    </DialogHeader>
+                    <div className="py-4">
+                        <p>আপনি কি নিশ্চিত যে আপনি এই তথ্যটি মুছে ফেলতে চান? এটি আর ফিরিয়ে আনা যাবে না।</p>
+                    </div>
+                    <div className="flex justify-end gap-4">
+                        <Button variant="outline" onClick={() => setDeleteId(null)}>বাতিল</Button>
+                        <Button variant="destructive" onClick={confirmDelete}>মুছুন</Button>
+                    </div>
+                </DialogContent>
+            </Dialog>
+        </div>
     );
 }
