@@ -124,32 +124,32 @@ export default function Dashboard() {
     };
 
     return (
-        <div className="p-4 md:p-8 pb-20 md:pb-8">
+        <div className="p-2 md:p-8 pb-20 md:pb-8">
             {loading ? (
                 <p>তথ্য লোড হচ্ছে...</p>
             ) : (
                 <>
                     <div className="grid gap-3 md:gap-4 grid-cols-2 lg:grid-cols-4 mb-6 md:mb-8">
-                        <div className="p-4 md:p-6 bg-white rounded-lg shadow border border-red-100">
+                        <div className="p-3 md:p-6 bg-white rounded-lg shadow border border-red-100">
                             <h3 className="text-sm md:text-lg font-semibold text-red-500">মোট বাকি</h3>
                             <p className="text-xl md:text-3xl font-bold text-red-600">৳{stats.totalDue.toLocaleString()}</p>
                         </div>
-                        <div className="p-4 md:p-6 bg-white rounded-lg shadow border border-blue-100">
+                        <div className="p-3 md:p-6 bg-white rounded-lg shadow border border-blue-100">
                             <h3 className="text-sm md:text-lg font-semibold text-blue-500">মোট মানুষ</h3>
                             <p className="text-xl md:text-3xl font-bold text-blue-600">{stats.totalPeople}</p>
                         </div>
-                        <div className="p-4 md:p-6 bg-white rounded-lg shadow border border-green-100">
+                        <div className="p-3 md:p-6 bg-white rounded-lg shadow border border-green-100">
                             <h3 className="text-sm md:text-lg font-semibold text-green-500">মোট জমা</h3>
                             <p className="text-xl md:text-3xl font-bold text-green-600">৳{stats.totalPaid.toLocaleString()}</p>
                         </div>
-                        <div className="p-4 md:p-6 bg-white rounded-lg shadow border border-gray-100">
+                        <div className="p-3 md:p-6 bg-white rounded-lg shadow border border-gray-100">
                             <h3 className="text-sm md:text-lg font-semibold text-gray-500">সর্বমোট</h3>
                             <p className="text-xl md:text-3xl font-bold text-gray-600">৳{stats.totalAmount.toLocaleString()}</p>
                         </div>
                     </div>
 
                     {/* Recent Activity Section */}
-                    <div className="bg-white rounded-lg shadow border p-4 md:p-6">
+                    <div className="bg-white rounded-lg shadow border p-3 md:p-6">
                         <div className="flex items-center justify-between mb-6">
                             <div className="flex items-center gap-2">
                                 <Clock className="w-5 h-5 text-primary" />

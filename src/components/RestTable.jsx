@@ -74,7 +74,7 @@ export default function RestTable({ rests, onEdit, onDelete, onTogglePaid }) {
             {/* Mobile Card View */}
             <div className="md:hidden space-y-3">
                 {rests.map((rest) => (
-                    <div key={rest.id} className="bg-white rounded-lg border shadow-sm p-4">
+                    <div key={rest.id} className="bg-white rounded-lg border shadow-sm p-3">
                         {/* Header with Name and Amount */}
                         <div className="flex justify-between items-start mb-3">
                             <div className="flex-1">

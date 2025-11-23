@@ -26,7 +26,7 @@ export default function AddRest() {
   };
 
   return (
-    <div className="p-4 md:p-8 pb-20 md:pb-8">
+    <div className="p-2 md:p-8 pb-20 md:pb-8">
       <RestForm title="নতুন ধারের তথ্য" onSubmit={handleAddRest} className="max-w-full mx-0" />
     </div>
   );
