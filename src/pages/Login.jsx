@@ -34,7 +34,7 @@ export default function Login() {
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <Card className="w-full max-w-md">
                 <CardHeader>
-                    <CardTitle className="text-2xl text-center">ধার খাতা লগইন</CardTitle>
+                    <CardTitle className="text-2xl text-center">বাকি খাতা লগইন</CardTitle>
                 </CardHeader>
                 <CardContent>
                     {error && <div className="bg-red-100 text-red-700 p-3 rounded mb-4">{error}</div>}
