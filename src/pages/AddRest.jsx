@@ -14,7 +14,7 @@ export default function AddRest() {
       // Log activity
       await addDoc(collection(db, "activities"), {
         type: 'add',
-        description: `নতুন ধার যোগ করা হয়েছে: ${data.name} - ৳${data.amount}`,
+        description: `নতুন বাকি যোগ করা হয়েছে: ${data.name} - ৳${data.amount}`,
         timestamp: new Date(),
       });
 
