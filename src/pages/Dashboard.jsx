@@ -154,25 +154,75 @@ export default function Dashboard() {
 
                     {/* Recent Activity Section */}
                     <div className="bg-white rounded-lg shadow border p-4 md:p-6">
-                        <div className="flex items-center gap-2 mb-4">
-                            <Clock className="w-5 h-5 text-gray-600" />
-                            <h2 className="text-lg md:text-xl font-semibold">সাম্প্রতিক কার্যক্রম</h2>
+                        <div className="flex items-center justify-between mb-6">
+                            <div className="flex items-center gap-2">
+                                <Clock className="w-5 h-5 text-primary" />
+                                <h2 className="text-lg md:text-xl font-semibold">সাম্প্রতিক কার্যক্রম</h2>
+                            </div>
+                            <span className="text-xs text-gray-500">সর্বশেষ ১০টি</span>
                         </div>
                         {activities.length === 0 ? (
-                            <p className="text-gray-500 text-sm">কোনো কার্যক্রম নেই</p>
+                            <div className="text-center py-12">
+                                <div className="text-6xl mb-4">📋</div>
+                                <p className="text-gray-500 text-sm">এখনও কোনো কার্যক্রম নেই</p>
+                                <p className="text-gray-400 text-xs mt-1">নতুন ধার যোগ করলে এখানে দেখা যাবে</p>
+                            </div>
                         ) : (
                             <div className="space-y-3">
                                 {activities.map((activity) => (
-                                    <div key={activity.id} className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
-                                        <span className="text-2xl">{getActivityIcon(activity.type)}</span>
+                                    <div
+                                        key={activity.id}
+                                        className="group relative flex items-start gap-4 p-4 bg-gradient-to-r from-gray-50 to-white hover:from-blue-50 hover:to-white border border-gray-200 rounded-xl transition-all duration-300 hover:shadow-md"
+                                    >
+                                        {/* Icon with background */}
+                                        <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-2xl ${activity.type === 'add' ? 'bg-blue-100' :
+                                                activity.type === 'edit' ? 'bg-yellow-100' :
+                                                    activity.type === 'paid' ? 'bg-green-100' :
+                                                        activity.type === 'unpaid' ? 'bg-orange-100' :
+                                                            activity.type === 'delete' ? 'bg-red-100' : 'bg-gray-100'
+                                            }`}>
+                                            {getActivityIcon(activity.type)}
+                                        </div>
+
+                                        {/* Content */}
                                         <div className="flex-1 min-w-0">
-                                            <p className={`font-medium text-sm md:text-base ${getActivityColor(activity.type)}`}>
+                                            {/* Activity Type Badge */}
+                                            <div className="flex items-center gap-2 mb-2">
+                                                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${activity.type === 'add' ? 'bg-blue-100 text-blue-800' :
+                                                        activity.type === 'edit' ? 'bg-yellow-100 text-yellow-800' :
+                                                            activity.type === 'paid' ? 'bg-green-100 text-green-800' :
+                                                                activity.type === 'unpaid' ? 'bg-orange-100 text-orange-800' :
+                                                                    activity.type === 'delete' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800'
+                                                    }`}>
+                                                    {activity.type === 'add' ? 'নতুন যোগ' :
+                                                        activity.type === 'edit' ? 'সম্পাদনা' :
+                                                            activity.type === 'paid' ? 'পরিশোধিত' :
+                                                                activity.type === 'unpaid' ? 'বাকি' :
+                                                                    activity.type === 'delete' ? 'মুছে ফেলা' : 'অন্যান্য'}
+                                                </span>
+                                            </div>
+
+                                            {/* Description */}
+                                            <p className={`font-medium text-sm md:text-base mb-2 ${getActivityColor(activity.type)}`}>
                                                 {activity.description}
                                             </p>
-                                            <p className="text-xs md:text-sm text-gray-500 mt-1">
-                                                {formatTimestamp(activity.timestamp)}
-                                            </p>
+
+                                            {/* Timestamp with icon */}
+                                            <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                <span>{formatTimestamp(activity.timestamp)}</span>
+                                            </div>
                                         </div>
+
+                                        {/* Decorative element */}
+                                        <div className={`absolute top-0 left-0 w-1 h-full rounded-l-xl ${activity.type === 'add' ? 'bg-blue-500' :
+                                                activity.type === 'edit' ? 'bg-yellow-500' :
+                                                    activity.type === 'paid' ? 'bg-green-500' :
+                                                        activity.type === 'unpaid' ? 'bg-orange-500' :
+                                                            activity.type === 'delete' ? 'bg-red-500' : 'bg-gray-500'
+                                            }`}></div>
                                     </div>
                                 ))}
                             </div>
