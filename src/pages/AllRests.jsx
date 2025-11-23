@@ -102,7 +102,7 @@ export default function AllRests() {
     };
 
     return (
-        <div className="p-2 md:p-8 pb-20 md:pb-8">
+        <div className="px-1 py-2 md:p-8 pb-20 md:pb-8">
             {loading ? (
                 <p>তথ্য লোড হচ্ছে...</p>
             ) : (
