@@ -125,10 +125,6 @@ export default function Dashboard() {
 
     return (
         <div className="p-4 md:p-8 pb-20 md:pb-8">
-            <div className="flex justify-between items-center mb-6 md:mb-8">
-                <h1 className="text-2xl md:text-3xl font-bold">ড্যাশবোর্ড</h1>
-            </div>
-
             {loading ? (
                 <p>তথ্য লোড হচ্ছে...</p>
             ) : (
@@ -176,10 +172,10 @@ export default function Dashboard() {
                                     >
                                         {/* Icon with background */}
                                         <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-2xl ${activity.type === 'add' ? 'bg-blue-100' :
-                                                activity.type === 'edit' ? 'bg-yellow-100' :
-                                                    activity.type === 'paid' ? 'bg-green-100' :
-                                                        activity.type === 'unpaid' ? 'bg-orange-100' :
-                                                            activity.type === 'delete' ? 'bg-red-100' : 'bg-gray-100'
+                                            activity.type === 'edit' ? 'bg-yellow-100' :
+                                                activity.type === 'paid' ? 'bg-green-100' :
+                                                    activity.type === 'unpaid' ? 'bg-orange-100' :
+                                                        activity.type === 'delete' ? 'bg-red-100' : 'bg-gray-100'
                                             }`}>
                                             {getActivityIcon(activity.type)}
                                         </div>
@@ -189,10 +185,10 @@ export default function Dashboard() {
                                             {/* Activity Type Badge */}
                                             <div className="flex items-center gap-2 mb-2">
                                                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${activity.type === 'add' ? 'bg-blue-100 text-blue-800' :
-                                                        activity.type === 'edit' ? 'bg-yellow-100 text-yellow-800' :
-                                                            activity.type === 'paid' ? 'bg-green-100 text-green-800' :
-                                                                activity.type === 'unpaid' ? 'bg-orange-100 text-orange-800' :
-                                                                    activity.type === 'delete' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800'
+                                                    activity.type === 'edit' ? 'bg-yellow-100 text-yellow-800' :
+                                                        activity.type === 'paid' ? 'bg-green-100 text-green-800' :
+                                                            activity.type === 'unpaid' ? 'bg-orange-100 text-orange-800' :
+                                                                activity.type === 'delete' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800'
                                                     }`}>
                                                     {activity.type === 'add' ? 'নতুন যোগ' :
                                                         activity.type === 'edit' ? 'সম্পাদনা' :
@@ -218,10 +214,10 @@ export default function Dashboard() {
 
                                         {/* Decorative element */}
                                         <div className={`absolute top-0 left-0 w-1 h-full rounded-l-xl ${activity.type === 'add' ? 'bg-blue-500' :
-                                                activity.type === 'edit' ? 'bg-yellow-500' :
-                                                    activity.type === 'paid' ? 'bg-green-500' :
-                                                        activity.type === 'unpaid' ? 'bg-orange-500' :
-                                                            activity.type === 'delete' ? 'bg-red-500' : 'bg-gray-500'
+                                            activity.type === 'edit' ? 'bg-yellow-500' :
+                                                activity.type === 'paid' ? 'bg-green-500' :
+                                                    activity.type === 'unpaid' ? 'bg-orange-500' :
+                                                        activity.type === 'delete' ? 'bg-red-500' : 'bg-gray-500'
                                             }`}></div>
                                     </div>
                                 ))}

@@ -103,10 +103,6 @@ export default function AllRests() {
 
     return (
         <div className="p-4 md:p-8 pb-20 md:pb-8">
-            <div className="flex justify-between items-center mb-6 md:mb-8">
-                <h1 className="text-2xl md:text-3xl font-bold">সব তালিকা</h1>
-            </div>
-
             {loading ? (
                 <p>তথ্য লোড হচ্ছে...</p>
             ) : (

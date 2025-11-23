@@ -27,9 +27,6 @@ export default function AddRest() {
 
   return (
     <div className="p-4 md:p-8 pb-20 md:pb-8">
-      <div className="flex justify-between items-center mb-6 md:mb-8">
-        <h1 className="text-2xl md:text-3xl font-bold">নতুন ধার যোগ করুন</h1>
-      </div>
       <RestForm title="নতুন ধারের তথ্য" onSubmit={handleAddRest} className="max-w-full mx-0" />
     </div>
   );
